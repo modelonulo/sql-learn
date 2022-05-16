@@ -314,7 +314,34 @@
         SELECT AVG(gross)
         FROM Films
         where title LIKE 'A%'
+        '''
+        
+        #Get the amount grossed by the worst performing film in 1994.
+        query = '''
+        SELECT MIN(gross)
+        FROM films 
+        WHERE release_year = 1994;
+        '''
 
+        #Get the amount grossed by the best performing film between 2000 and 2012, inclusive
+        query = '''
+        SELECT MAX(gross)
+        FROM films
+        WHERE release_year BETWEEN 2000 AND 2012;
+        '''
+
+#Operacoes matematicas
+
+        #SQL assume que se vc divide um inteiro por um inteiro, vc deseja um inteiro como resultado. 
+        #se precisa de precisao, adicionar casas decimais nos numeros. ex:
+
+        query = '''
+        SELECT (4 / 3);
+        ''' #resulta em 1
+
+        query = '''
+        SELECT (4.0 / 3.0)
+        ''' #resulta em 1.333
 
 
 
