@@ -29,9 +29,8 @@
     df = pd.read_sql_query(query,engine)
     df.head()
 
-    # DATACAMP  
         
-        #SELECT ----------------
+    #SELECT ----------------
         
         query = '''
         SELECT name from employees;
@@ -90,7 +89,8 @@
         FROM people;
         '''
         #SELECT FILTERING WHERE----------------
-        #filter numeric and text
+        #filter numeric and text, However, so far you've only been able 
+        #to filter by specifying the exact text you're interested in
         
         # FROM + WHERE (sempre usado apos FROM )
         
@@ -235,8 +235,85 @@
         WHERE language IS NULL;
         '''
 
-        #teste
+        #WHERE + LIKE // NOT LIKE
+        #LIKE operator can be used in a WHERE clause to search for a pattern in a column
+        #para isto, wildcard as a placeholder for some other values. 
+        #There are two wildcards you can use with LIKE
+        
+        #% match zero, one, or many characters in text. Vai retornar:'Data', 'DataC' 'DataCamp', 'DataMind'
+        query = '''
+        SELECT name FROM companies WHERE name LIKE 'Data%';
+        '''
 
+        #_ retorna single charactere. vai retornar 'DataCamp', 'DataComp'
+        query = '''
+        SELECT name FROM companies WHERE name LIKE 'DataC_mp'
+        '''
+
+        #NOT LIKE retorna os resultados que nao match.
+
+        #Get the names of all people whose names begin with 'B'.
+        query = '''
+        SELECT name
+        FROM people
+        WHERE name LIKE 'B%'
+        '''
+
+        #Get the names of people whose names have 'r' as the second letter
+        query = '''
+        SELECT name
+        FROM people
+        WHERE name LIKE '_r%';
+        '''
+
+        #Get the names of people whose names don't start with A
+        query = '''
+        SELECT name
+        FROM people
+        name NOT LIKE 'A%'
+        '''
+
+    #FUNCOES DE AGREGACAO = AGGREGATE FUNCTIONS
+    #funcoes para calcular soma, media, maximo ex
+
+        #Get the average value from the budget column of the films - media
+        query = '''
+        SELECT AVG(budget)
+        FROM films;
+        '''
+
+        #Get the MAX value from the budget column of the films - maximo
+        query = '''
+        SELECT MAX(budget)
+        FROM films;
+        '''
+
+        #Use the SUM() function to get the total duration of all films. - soma
+        query = '''
+        SELECT SUM(duration)
+        FROM films;
+        '''
+
+        #Selecione a duracao do filme mais curto
+        query = '''
+        SELECT MIN(duration)
+        FROM films;
+        ''' 
+
+#Combinando funcoes de agregacao com o WHERE. 
+
+        #get the total budget of movies made in the year 2010 or later:
+        query = '''
+        SELECT SUM(budget) 
+        FROM Films
+        WHERE release_year >= 2010;
+        '''
+
+        #Get the average amount grossed by all films whose titles start with the letter 'A'
+        que = '''
+        SELECT AVG(gross)
+        FROM Films
+        where title LIKE 'A%'
 
 
 
